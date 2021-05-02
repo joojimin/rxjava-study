@@ -30,12 +30,14 @@ class IntervalTest {
 	@Test
 	@DisplayName("interval(long period, TimeUnit unit) test")
 	void intervalTest() throws InterruptedException {
-		Observable.interval(100L, TimeUnit.MILLISECONDS) // 처음 데이터 발행은 period가 지난후
-				  .doOnNext(System.out::println) // data 출력
+		Observable observable = Observable.interval(100L, TimeUnit.MILLISECONDS) // 처음 데이터 발행은 period가 지난후
 				  .map(data -> (data+1) * 100) // data = 0부터 발행 ( 초기값이 0이니까 곱하기위해 + 1)
-				  .take(5)
-				  .doOnNext(this::printTime)
-				  .subscribe();
+				  .take(5);
+
+		observable.subscribe(data -> printTime("Subscribe #1 = " + data));
+		Thread.sleep(200L);
+		observable.subscribe(data -> printTime("Subscribe #2 = " + data));
+
 		Thread.sleep(1000l); // 기본 원형은 별도의 계산 스케줄러에 의해 실행되기 때문에 sleep을 줘서 테스트
 
 //		0
