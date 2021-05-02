@@ -15,7 +15,7 @@ public class ReduceTest {
 				  .flatMap(num -> Observable.range(1, 9),
 						   (num, i) -> num * i)
 				  .reduce((num1, num2) -> num1 + num2)
-//				  .doOnComplete(System.out::println) // reduce와 doOnComplete는 안맞나..?
-				  .subscribe(System.out::println);
+				  .doOnSuccess(System.out::println) // reduce와 doOnComplete는 안맞나..?
+				  .subscribe();
 	}
 }
