@@ -1,3 +1,5 @@
+package conversionmethod;
+
 import io.reactivex.Observable;
 import org.junit.jupiter.api.Test;
 

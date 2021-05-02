@@ -25,7 +25,7 @@ class deferTest {
 
 	@Test
 	void deferTest(){
-		Callable<Observable<String>> supplier = () -> getObservable();
+		Callable<Observable<String>> supplier = () -> getObservable(); // 각도형별로 발행
 		Observable<String> source = Observable.defer(supplier);
 
 		source.subscribe(val -> print("Subscriber #1:" + val));
