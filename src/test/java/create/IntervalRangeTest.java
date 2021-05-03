@@ -1,4 +1,4 @@
-package createmethod;
+package create;
 
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
@@ -73,16 +73,17 @@ public class IntervalRangeTest {
 	@Test
 	void makeIntervalRangeUsingRangeTest() throws InterruptedException {
 		Observable.range(1, 5)
-				  .delay(500L, TimeUnit.MILLISECONDS) // @SchedulerSupport(SchedulerSupport.COMPUTATION)
 				  .map(data -> data * 100)
+				  .zipWith(Observable.interval(100L, TimeUnit.MILLISECONDS),
+						   (val1, val2) -> val1)
 				  .doOnNext(this::printTime)
 				  .subscribe();
-		Thread.sleep(3000L);
+		Thread.sleep(1000L);
 
-//		[RxComputationThreadPool-1] time = 582, data = 100
-//		[RxComputationThreadPool-1] time = 611, data = 200
-//		[RxComputationThreadPool-1] time = 611, data = 300
-//		[RxComputationThreadPool-1] time = 611, data = 400
-//		[RxComputationThreadPool-1] time = 611, data = 500
+//		[RxComputationThreadPool-1] time = 205, data = 100
+//		[RxComputationThreadPool-1] time = 305, data = 200
+//		[RxComputationThreadPool-1] time = 404, data = 300
+//		[RxComputationThreadPool-1] time = 505, data = 400
+//		[RxComputationThreadPool-1] time = 604, data = 500
 	}
 }

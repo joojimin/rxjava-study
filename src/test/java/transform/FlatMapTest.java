@@ -1,4 +1,4 @@
-package conversionmethod;
+package transform;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;

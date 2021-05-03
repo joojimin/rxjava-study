@@ -1,4 +1,4 @@
-package createmethod;
+package create;
 
 import io.reactivex.Single;
 import org.junit.jupiter.api.Test;

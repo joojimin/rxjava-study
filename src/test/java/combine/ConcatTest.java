@@ -1,4 +1,4 @@
-package combinemethod;
+package combine;
 
 import io.reactivex.Observable;
 import org.junit.jupiter.api.Test;
