@@ -25,8 +25,8 @@ class DelayTest {
 	@Test
 	void delayTest() throws InterruptedException {
 		String[] data = {"1", "7", "2", "3", "4"};
-		Observable.fromArray(data)
-				  .delay(100L, TimeUnit.MILLISECONDS)
+		Observable.timer(100L, TimeUnit.MILLISECONDS)
+				  .flatMap(notUsed -> Observable.fromArray(data))
 				  .doOnNext(this::printTime)
 				  .subscribe();
 		Thread.sleep(1000L);

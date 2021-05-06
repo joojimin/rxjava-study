@@ -49,13 +49,19 @@ class CombineLatestTest {
 			.filter(str-> str.startsWith("a:"))
 			.map(str -> str.replace("a:", ""))
 			.map(Integer::parseInt)
-			.doOnNext(data -> System.out.println("a : " + data));
+			.doOnNext(data -> {
+				Thread.sleep(1000L);
+				System.out.println("a : " + data);
+			});
 
 		Observable<Integer> b = source
 			.filter(str -> str.startsWith("b:"))
 			.map(str -> str.replace("b:", ""))
 			.map(Integer::parseInt)
-			.doOnNext(data -> System.out.println("b : " + data));
+			.doOnNext(data -> {
+				Thread.sleep(1000L);
+				System.out.println("b : " + data);
+			});
 
 		Observable.combineLatest(a, b, (x, y) -> x+y)
 				  .subscribe(this::printTime);

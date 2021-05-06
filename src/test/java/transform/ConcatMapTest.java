@@ -40,6 +40,16 @@ class ConcatMapTest {
 	}
 
 	@Test
+	void concatMapTest2() {
+		String[] balls = {"1", "3", "5"};
+
+		Observable<String> source = Observable.fromArray(balls)
+											  .switchMap(ball -> Observable.fromArray(1,2)
+																		   .map(notUsed -> ball + "<>"));
+		source.subscribe(this::printTime);
+	}
+
+	@Test
 	void flatMapTest() throws InterruptedException {
 		String[] balls = {"1", "3", "5"};
 
