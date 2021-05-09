@@ -1,4 +1,4 @@
-package errorhandling;
+package errorHandling;
 
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
