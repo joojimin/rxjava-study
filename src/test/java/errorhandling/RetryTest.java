@@ -1,4 +1,4 @@
-package errorHandling;
+package errorhandling;
 
 import io.reactivex.Observable;
 import org.junit.jupiter.api.Test;
